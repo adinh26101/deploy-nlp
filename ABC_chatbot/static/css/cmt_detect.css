@@ -14,7 +14,7 @@
     height: 50px;
     border-radius: 5px;
 }
-.button{
+#button{
     display: block;
     text-decoration: none   ;
     width: 115px;
@@ -31,7 +31,7 @@
     -o-transition : border 200ms ease-out;
     transition : border 200ms ease-out;
 }
-.button:hover{
+#button:hover{
     border : 2px solid black; 
 }
 

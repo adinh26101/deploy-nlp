@@ -1,7 +1,7 @@
 from django.urls import path
-from comment_classification.views import Index, GetData
+from comment_classification.views import cmt_detect, getRating
 
 urlpatterns = [
-    path('', Index, name='index'),
-    path('getRating', GetData, name='getRating'),
+    path('', cmt_detect, name='cmt_detect'),
+    path('getRating/<comment>', getRating, name='getRating'),
 ]

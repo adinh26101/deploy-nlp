@@ -26,8 +26,8 @@ SECRET_KEY = 'django-insecure-tth(#^qrig0++er0i54o2gj^h&--2fim*j4n5&q!6(vy*3+y06
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = ['https://abc-chat-bot.herokuapp.com/']
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://abc-chat-bot.herokuapp.com/']
+# ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'comment_classification.apps.CommentClassificationConfig',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware', # add whitenoise
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'ABC_chatbot.urls'

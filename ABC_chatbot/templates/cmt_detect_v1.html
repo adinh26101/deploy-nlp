@@ -10,7 +10,7 @@
     </div>
     <div style="width: 70%; height: 100px;"><input type="text" id="input"></div>
     <div style="height: 100px;">
-        <a href="#" class="button" onclick="detect()">Detect</a>
+        <a href="#" id="button" onclick="detect()">Detect</a>
     </div>
 
     <div class="labels">
@@ -23,14 +23,14 @@
         </div>
     </div>
 </div>
+<script src="https://d3js.org/d3.v4.min.js"></script>
 <script>
     function detect(){
-        // simulator response from server
-        console.log(document.getElementById("input").value);
-
-        var rating = Math.floor(Math.random() * 5) + 1;
-        document.getElementsByClassName("active")[0].className = "label";
-        document.getElementById(rating.toString()).className += " active";
+        d3.json("{% url 'cmt_detect' %}"+"getRating/"+cmt, function(data) {
+            console.log(data);
+            document.getElementsByClassName("active")[0].className = "label";
+            document.getElementById(data).className += " active";
+        });  
     }
 </script>
 {% endblock %}
