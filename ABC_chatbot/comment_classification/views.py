@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-import pickle5 as pickle
+import pickle
 import numpy as np
 from underthesea import word_tokenize
 # Create your views here.
