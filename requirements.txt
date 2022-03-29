@@ -5,4 +5,4 @@ gunicorn==20.1.0
 whitenoise==5.2.0
 underthesea==1.3.3
 numpy==1.22.3
-pickle-mixin
+pip install pickle5
