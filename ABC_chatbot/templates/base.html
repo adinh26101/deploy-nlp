@@ -1,0 +1,29 @@
+{% load static %}
+<html>
+    <head>
+        <meta charset="UTF8">
+        <title>{% block title %} {% endblock %}</title>
+        <link rel="icon" href="{% static 'assets/logo.png' %}" type="image/x-icon">
+        <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        {% block static %} {% endblock %}
+    </head>
+    <body>
+        <!-- Top Nav -->
+        <div class="row">
+            <div class="leftcolumn">
+                <img src="{% static 'assets/chatbot.png' %}" width="59" height="59">
+            </div>
+            <div class="rightcolumn">
+                <div class="navbar">
+                    <a href="#">Home</a>
+                    <a href="#">Code</a>
+                    <a href="#">About Us</a>
+                    <a href="#">Contact Us</a>
+                    <a></a>
+                </div>
+            </div>
+        </div>
+        {% block content %} {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,36 @@
+{% extends 'base.html' %} {% load static %}
+{% block title %} ABC's Comment Classification {% endblock %}
+{% block static %}
+<link rel="stylesheet" href="{% static 'css/cmt_detect.css' %}">
+{% endblock %}
+{% block content %}
+<div class="content-detect">
+    <div style="height: 200px;">
+        <h1 class="heading">Input your Comment here to testing model</h1>
+    </div>
+    <div style="width: 70%; height: 100px;"><input type="text" id="input"></div>
+    <div style="height: 100px;">
+        <a href="#" class="button" onclick="detect()">Detect</a>
+    </div>
+
+    <div class="labels">
+        <img class="active">
+        <img class="label" id="5" src="{% static 'assets/5.png' %}" width="59" height="59">
+        <img class="label" id="4" src="{% static 'assets/4.png' %}" width="59" height="59">
+        <img class="label" id="3" src="{% static 'assets/3.png' %}" width="59" height="59">
+        <img class="label" id="2" src="{% static 'assets/2.png' %}" width="59" height="59">
+        <img class="label" id="1" src="{% static 'assets/1.png' %}" width="59" height="59">
+        </div>
+    </div>
+</div>
+<script>
+    function detect(){
+        // simulator response from server
+        console.log(document.getElementById("input").value);
+
+        var rating = Math.floor(Math.random() * 5) + 1;
+        document.getElementsByClassName("active")[0].className = "label";
+        document.getElementById(rating.toString()).className += " active";
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,22 @@
+body {
+    margin: 0;
+    font: 14px Open Sans,arial,Helvetica Neue,Helvetica;
+    color: #16181a;
+}
+
+.leftcolumn {
+    float: left;
+    width: 25%;
+}
+
+.rightcolumn {
+    float: left;
+    width: 75%;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+    align-items: center;
+}
