@@ -1,0 +1,62 @@
+{% extends 'base.html' %} {% load static %}
+{% block title %} ABC's Comment Classification {% endblock %}
+{% block static %}
+<link rel="stylesheet" href="{% static 'css/cmt_detect.css' %}">
+{% endblock %}
+{% block content %}
+<div class="content-detect">
+    <div style="height: 200px;">
+        <h1 class="heading">Input your Comment here to testing model</h1>
+    </div>
+    <div style="width: 70%; height: 100px;"><input type="text" id="input"></div>
+    <div style="height: 100px;">
+        <a href="#" id="button" onclick="detect()">Detect</a>
+    </div>
+
+    <div class="labels">
+        <img class="activeshop" id="10" style="display: none;">
+        <img class="activeshipper" id="20" style="display: none;">
+        <img class="shop" id="11" src="{% static 'assets/shop.png' %}" width="59" height="59">
+        <img class="shipper" id="21" src="{% static 'assets/shipper.png' %}" width="59" height="59">
+    </div>
+
+    <div class="labels">
+        <img class="activesp" id="30" style="display: none;">
+        <img class="sp" id="31" src="{% static 'assets/dolotNu.png' %}" width="59" height="59">
+        <img class="sp" id="32" src="{% static 'assets/damNu.png' %}" width="59" height="59">
+        <img class="sp" id="33" src="{% static 'assets/shoes.png' %}" width="59" height="59">
+        <img class="sp" id="34" src="{% static 'assets/doLot.png' %}" width="59" height="59">
+    </div>
+
+    <div class="labels">
+        <img class="active" id="0" style="display: none;">
+        <img class="label" id="5" src="{% static 'assets/5.png' %}" width="59" height="59">
+        <img class="label" id="3" src="{% static 'assets/3.png' %}" width="59" height="59">
+        <img class="label" id="1" src="{% static 'assets/1.png' %}" width="59" height="59">
+    </div>
+
+</div>
+
+    
+</div>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
+    function detect(){
+        cmt=document.getElementById("input").value
+        d3.json("{% url 'cmt_detect' %}"+"getRating/"+cmt, function(data) {
+            console.log(cmt);
+            document.getElementsByClassName("active")[0].className = "label";
+            document.getElementById(data.rating).className += " active";
+
+            document.getElementsByClassName("activeshop")[0].className = "shop";
+            document.getElementById(10 + data.shop).className += " activeshop";
+
+            document.getElementsByClassName("activeshipper")[0].className = "shipper";
+            document.getElementById(20 + data.dvvc).className += " activeshipper";
+
+            document.getElementsByClassName("activesp")[0].className = "sp";
+            document.getElementById(30 + data.sp).className += " activesp";
+        });  
+    }
+</script>
+{% endblock %}

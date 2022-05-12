@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 import pickle
+import json
 import numpy as np
 from underthesea import word_tokenize
 # Create your views here.
@@ -19,14 +20,41 @@ def encoder(sentence):
     return onehot_vector
 
 # load model Dtree
-modelDT = pickle.load(open('static/dt.txt', 'rb'))
+modelDT_rt = pickle.load(open('static/dt_rt.txt', 'rb'))
+modelDT_shop = pickle.load(open('static/dt_shop.txt', 'rb'))
+modelDT_dvvc = pickle.load(open('static/dt_dvvc.txt', 'rb'))
+modelDT_sp = pickle.load(open('static/dt_sp.txt', 'rb'))
 
 def cmt_detect(request):
-    return render(request, 'cmt_detect_v1.html')
+    return render(request, 'cmt_detect_v2.html')
+
+def aboutUs(request):
+    return render(request, 'about_us.html')
+
+def aboutProject(request):
+    return render(request, 'about_project.html')
 
 def getRating(request, comment):
+    data = {
+        "rating": 0,
+        "shop": 0,
+        "dvvc": 0,
+        "sp": 0
+    }
     if comment == "":
-        return HttpResponse(0)
+        return HttpResponse(str(data))
     else:
-        rating = modelDT.predict(encoder(comment).reshape(1,-1))[0]
-        return HttpResponse(rating)
+        data["rating"] = int(modelDT_rt.predict(encoder(comment).reshape(1,-1))[0])
+        data["shop"] = int(modelDT_shop.predict(encoder(comment).reshape(1,-1))[0])
+        data["dvvc"] = int(modelDT_dvvc.predict(encoder(comment).reshape(1,-1))[0])
+        data["sp"] = int(modelDT_sp.predict(encoder(comment).reshape(1,-1))[0])
+        return HttpResponse(json.dumps(data))
+
+def getRatingNan(request):
+    data = {
+        "rating": 0,
+        "shop": 0,
+        "dvvc": 0,
+        "sp": 0
+    }
+    return HttpResponse(json.dumps(data))

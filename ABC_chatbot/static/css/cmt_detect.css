@@ -37,14 +37,16 @@
 
 .labels{
     display: table;
+    padding-bottom: 15px;
 }
-.label{
+.label, .shop, .shipper, .sp{
+    padding: 10px;
     border-radius: 10px;
     border: 2px solid #ffffff00;
 }
-.label:hover{
+.label:hover, .shop:hover, .shipper:hover, .sp:hover{
     border-color: #4caf50; 
 }
-.active{
+.active, .activeshop, .activeshipper, .activesp{
     background-color: #4caf50;
 }
