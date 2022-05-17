@@ -20,10 +20,10 @@ def encoder(sentence):
     return onehot_vector
 
 # load model Dtree
-modelDT_rt = pickle.load(open('static/dt_rt.txt', 'rb'))
-modelDT_shop = pickle.load(open('static/dt_shop.txt', 'rb'))
-modelDT_dvvc = pickle.load(open('static/dt_dvvc.txt', 'rb'))
-modelDT_sp = pickle.load(open('static/dt_sp.txt', 'rb'))
+modelLR_rt = pickle.load(open('static/lr_rt.txt', 'rb'))
+modelLR_shop = pickle.load(open('static/lr_shop.txt', 'rb'))
+modelLR_dvvc = pickle.load(open('static/lr_dvvc.txt', 'rb'))
+modelLR_sp = pickle.load(open('static/lr_sp.txt', 'rb'))
 
 def cmt_detect(request):
     return render(request, 'cmt_detect_v2.html')
@@ -44,10 +44,10 @@ def getRating(request, comment):
     if comment == "":
         return HttpResponse(str(data))
     else:
-        data["rating"] = int(modelDT_rt.predict(encoder(comment).reshape(1,-1))[0])
-        data["shop"] = int(modelDT_shop.predict(encoder(comment).reshape(1,-1))[0])
-        data["dvvc"] = int(modelDT_dvvc.predict(encoder(comment).reshape(1,-1))[0])
-        data["sp"] = int(modelDT_sp.predict(encoder(comment).reshape(1,-1))[0])
+        data["rating"] = int(modelLR_rt.predict(encoder(comment).reshape(1,-1))[0])
+        data["shop"] = int(modelLR_shop.predict(encoder(comment).reshape(1,-1))[0])
+        data["dvvc"] = int(modelLR_dvvc.predict(encoder(comment).reshape(1,-1))[0])
+        data["sp"] = int(modelLR_sp.predict(encoder(comment).reshape(1,-1))[0])
         return HttpResponse(json.dumps(data))
 
 def getRatingNan(request):
