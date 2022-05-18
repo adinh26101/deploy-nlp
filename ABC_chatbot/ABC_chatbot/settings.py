@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-tth(#^qrig0++er0i54o2gj^h&--2fim*j4n5&q!6(vy*3+y06
 DEBUG = True
 
 # ALLOWED_HOSTS = ['abc-cmt-detection.herokuapp.com']
-ALLOWED_HOSTS = ['eace-2402-800-63e9-6318-bfff-eb87-7ee3-78e7.ap.ngrok.io', '127.0.0.1']
+ALLOWED_HOSTS = ['0ba3-171-236-246-86.ap.ngrok.io', '127.0.0.1']
 
 # Application definition
 
