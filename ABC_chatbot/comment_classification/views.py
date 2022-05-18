@@ -31,6 +31,9 @@ def cmt_detect(request):
 def aboutUs(request):
     return render(request, 'about_us.html')
 
+def chatBot(request):
+    return render(request, 'chatbot.html')
+
 def aboutProject(request):
     return render(request, 'about_project.html')
 
