@@ -1,0 +1,19 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: abc-chatbot-web
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: abc-chatbot-web
+  template:
+    metadata:
+      labels:
+        app: abc-chatbot-web
+    spec:
+      containers:
+      - name: abc-chatbot-web
+        image: frogdance/abc_chatbot_web
+        ports:
+        - containerPort: 8000
