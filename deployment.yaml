@@ -27,7 +27,8 @@ metadata:
   name: test-ingress
 spec:
   rules:
-  - http:
+  - host: abc.app
+    http:
       paths:
       - pathType: Prefix
         path: "/code"
