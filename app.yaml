@@ -1,0 +1,40 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: shop-cmt-classification
+  labels:
+    app: shop-cmt-classification
+spec:
+  containers:
+  - name: deploy-nlp
+    image: frogdance/deploy_nlp:latest
+    command: ["python3"]
+    args: ["manage.py", "runserver"]
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: shop-cmt-classification
+spec:
+  selector:
+    app: shop-cmt-classification
+  ports:
+  - port: 8000
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: shop-cmt-classification-ingress
+  namespace: shop-cmt-classification
+spec:
+  rules:
+  - host: abc.app
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/code"
+        backend:
+          service:
+            name: shop-cmt-classification
+            port:
+              number: 8000
